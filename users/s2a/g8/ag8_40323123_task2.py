@@ -378,6 +378,109 @@ r1, s1 = mychain.basic_rot(p13, k13, '''+str(first_degree)+''')
     outstring += "mychain.basic(x22, y22, r11, s11)\n"
  
     return outstring
+def realcircle(x, y):
+    
+     # 20 為鏈條兩圓距
+    # chain 所圍之圓圈半徑為 20/2/math.asin(degree*math.pi/180/2)
+    # degree = math.asin(20/2/radius)*180/math.pi
+    x = 50
+    y = 0
+    degree = 12
+    # 78, 66, 54, 42, 30, 18, 6度
+    #必須有某些 chain 算座標但是不 render
+    first_degree = 90 - degree
+    repeat = 360 / degree
+    # 第1節也是 virtual chain
+    outstring = '''
+mychain = chain()
+ 
+x1, y1 = mychain.basic_rot('''+str(x)+","+str(y)+", "+str(first_degree)+''', True)
+#x1, y1 = mychain.basic_rot('''+str(x)+","+str(y)+", "+str(first_degree)+''')
+'''
+    # 這裡要上下各多留一節虛擬 chain, 以便最後進行連接 (x7, y7) 與 (x22, y22)
+    for i in range(2, int(repeat)+1):
+        #if i < 7 or i > 23:        
+        if i <= 3 or i >= 22:
+            # virautl chain
+            outstring += "x"+str(i)+", y"+str(i)+"=mychain.basic_rot(x"+str(i-1)+", y"+str(i-1)+", 90-"+str(i*degree)+",True) \n"
+            #outstring += "x"+str(i)+", y"+str(i)+"=mychain.basic_rot(x"+str(i-1)+", y"+str(i-1)+", 90-"+str(i*degree)+") \n"
+        else:
+            outstring += "x"+str(i)+", y"+str(i)+"=mychain.basic_rot(x"+str(i-1)+", y"+str(i-1)+", 90-"+str(i*degree)+") \n"
+ 
+    p = -150
+    k = 0
+    degree = 20
+    # 70, 50, 30, 10
+    # 從 i=5 開始, 就是 virautl chain
+    first_degree = 90 - degree
+    repeat = 360 / degree
+    # 第1節不是 virtual chain
+    outstring += '''
+#mychain = chain()
+ 
+p1, k1 = mychain.basic_rot('''+str(p)+","+str(k)+", "+str(first_degree)+''')
+'''
+    for i in range(2, int(repeat)+1):
+        if i >= 7 and i <= 15:
+            # virautl chain
+            outstring += "p"+str(i)+", k"+str(i)+"=mychain.basic_rot(p"+str(i-1)+", k"+str(i-1)+", 90-"+str(i*degree)+", True) \n"
+            #outstring += "p"+str(i)+", k"+str(i)+"=mychain.basic_rot(p"+str(i-1)+", k"+str(i-1)+", 90-"+str(i*degree)+") \n"
+        else:
+            outstring += "p"+str(i)+", k"+str(i)+"=mychain.basic_rot(p"+str(i-1)+", k"+str(i-1)+", 90-"+str(i*degree)+") \n"
+
+    s = -97
+    t = 124.5
+    degree = 12
+    # 70, 50, 30, 10
+    # 從 i=5 開始, 就是 virautl chain
+    first_degree = 90 - degree
+    repeat = 360 / degree
+    # 第1節不是 virtual chain
+    outstring += '''
+#mychain = chain()
+ 
+s1, t1 = mychain.basic_rot('''+str(s)+","+str(t)+", "+str(first_degree)+''',True)
+#x1, y1 = mychain.basic_rot('''+str(x)+","+str(y)+", "+str(first_degree)+''')
+'''
+    for i in range(2, int(repeat)+1):
+
+        if i <= 18 or i >= 26:
+            # virautl chain
+            outstring += "s"+str(i)+", t"+str(i)+"=mychain.basic_rot(s"+str(i-1)+", t"+str(i-1)+", 90-"+str(i*degree)+",True) \n"
+        else:
+            outstring += "s"+str(i)+", t"+str(i)+"=mychain.basic_rot(s"+str(i-1)+", t"+str(i-1)+", 90-"+str(i*degree)+") \n"
+ 
+ 
+    a = -180
+    b = 101
+    degree = 5
+    # 70, 50, 30, 10
+    # 從 i=5 開始, 就是 virautl chain
+    first_degree = 90 - degree
+    repeat = 360 / degree
+    # 第1節不是 virtual chain
+    outstring += '''
+#mychain = chain()
+ 
+a1, b1 = mychain.basic_rot('''+str(a)+","+str(b)+", "+str(first_degree)+''',True)
+'''
+    for i in range(2, int(repeat)+1):
+
+
+       
+        if i <= 47 or i >= 65:
+            # virautl chain
+            outstring += "a"+str(i)+", b"+str(i)+"=mychain.basic_rot(a"+str(i-1)+", b"+str(i-1)+", 90-"+str(i*degree)+",True) \n"
+            #outstring += "x"+str(i)+", y"+str(i)+"=mychain.basic_rot(x"+str(i-1)+", y"+str(i-1)+", 90-"+str(i*degree)+") \n"
+        else:
+            outstring += "a"+str(i)+", b"+str(i)+"=mychain.basic_rot(a"+str(i-1)+", b"+str(i-1)+", 90-"+str(i*degree)+") \n"
+
+
+
+
+ 
+    return outstring
+
 def eighteenthirty(x, y):
     '''
 從圖解法與符號式解法得到的兩條外切線座標點
@@ -549,6 +652,10 @@ def drawtwocircle(x,y):
     return head_str + chain_str + twocircle(int(x), int(y)) + tail_str
  
  
+@ag8_test.route('/realcircle/<x>/<y>')
+@ag8_test.route('/realcircle', defaults={'x':0, 'y':0})
+def drawrealcircle(x,y):
+    return head_str + chain_str + realcircle(int(x), int(y)) + tail_str
 @ag8_test.route('/eighteenthirty/<x>/<y>')
 @ag8_test.route('/eighteenthirty', defaults={'x':0, 'y':0})
 def draweithteenthirdy(x,y):
