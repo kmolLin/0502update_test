@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Created by Leo: http://leoeditor.com/leo_toc.html -->
+<?xml-stylesheet ekr_test ?>
 <leo_file xmlns:leo="http://leoeditor.com/namespaces/leo-python-editor/1.1" >
 <leo_header file_format="2" tnodes="0" max_tnode_index="0" clone_windows="0"/>
 <globals body_outline_ratio="0.5" body_secondary_ratio="0.5">
@@ -11,7 +12,8 @@
 <vnodes>
 <v t="123.20160421132759.2"><vh>NewHeadline</vh></v>
 <v t="123.20160421132855.1"><vh>@edit ag8_40323123_task1.py</vh></v>
-<v t="123.20160421132932.1"><vh>@clean myflaskapp.py</vh>
+<v t="roger.20160516110943.1" a="E"><vh>@auto ag8_40323123_task2.py</vh></v>
+<v t="123.20160421132932.1" a="E"><vh>@clean myflaskapp.py</vh>
 <v t="123.20160421132932.2"><vh>myflaskapp declarations</vh></v>
 </v>
 <v t="123.20160421190527.2"><vh>Recovered Nodes</vh>
@@ -26,7 +28,7 @@
 <v t="leo.20160428160920.5"><vh>new:myflaskapp declarations</vh></v>
 </v>
 </v>
-<v t="leo.20160430034658.2" a="E"><vh>Recovered Nodes</vh>
+<v t="leo.20160430034658.2"><vh>Recovered Nodes</vh>
 <v t="leo.20160430034658.3"><vh>Recovered node "myflaskapp declarations" from @clean myflaskapp.py</vh>
 <v t="leo.20160430034658.4"><vh>old:myflaskapp declarations</vh></v>
 <v t="leo.20160430034658.5"><vh>new:myflaskapp declarations</vh></v>
@@ -53,6 +55,7 @@ app.register_blueprint(users.s2a.g8.ag8_40323131_task1.ag8_40323131)
 app.register_blueprint(users.s2a.g8.ag8_40323154_task1.ag8_40323154)
 app.register_blueprint(users.s2a.g8.ag8_40323143_task1.ag8_40323143)
 app.register_blueprint(users.s2a.g8.ag8_40323137_task1.ag8_40323137)
+app.register_blueprint(users.s2a.g8.ag8_40323123_task2.ag8_test)
 
 #g6
 app.register_blueprint(users.s2a.g6.ag6.ag6)
@@ -149,6 +152,7 @@ import users.s2a.g8.ag8_40323154_task1
 import users.s2a.g8.ag8_40323143_task1
 import users.s2a.g8.ag8_40323137_task1
 import users.s2a.g8.ag8
+import users.s2a.g8.ag8_40323123_task2
 # 二乙
 #g1
 import s2b_files.task1.g1.task0 as bg1_0

@@ -37,6 +37,7 @@ import users.s2a.g8.ag8_40323154_task1
 import users.s2a.g8.ag8_40323143_task1
 import users.s2a.g8.ag8_40323137_task1
 import users.s2a.g8.ag8
+import users.s2a.g8.ag8_40323123_task2
 # 二乙
 #g1
 import s2b_files.task1.g1.task0 as bg1_0
@@ -120,6 +121,7 @@ app.register_blueprint(users.s2a.g8.ag8_40323131_task1.ag8_40323131)
 app.register_blueprint(users.s2a.g8.ag8_40323154_task1.ag8_40323154)
 app.register_blueprint(users.s2a.g8.ag8_40323143_task1.ag8_40323143)
 app.register_blueprint(users.s2a.g8.ag8_40323137_task1.ag8_40323137)
+app.register_blueprint(users.s2a.g8.ag8_40323123_task2.ag8_test)
 
 #g6
 app.register_blueprint(users.s2a.g6.ag6.ag6)
